@@ -5,8 +5,8 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity,
 import Task from './Components/Task';
 
 export default function App() {
-  const [task, setTask] = useState();
-  const [taskItems, setTaskItems] = useState([]);
+  const [task, setTask] = useState<string>('');
+  const [taskItems, setTaskItems] = useState<Array<{text: string, completed: boolean}>>([]);
   const [inputColor, setInputColor] = useState('#C0C0C0');
 
   const handleAddTask = () => {
@@ -18,24 +18,24 @@ export default function App() {
     }
   }
 
-  const handleDeleteTask = (id) => {
+  const handleDeleteTask = (id: number) => {
     let itemsCopy = [...taskItems];
-    itemsCopy.splice(id, 1);
+    itemsCopy.splice(id, 1);   
     setTaskItems(itemsCopy);
   }
 
-  const handleCompleteTask = (id) => {
+  const handleCompleteTask = (id: number) => {
     let itemsCopy = [...taskItems];
     itemsCopy[id].completed = !itemsCopy[id].completed;
     setTaskItems(itemsCopy);
   };
 
-  const handleTextChange = (text) => {
+  const handleTextChange = (text: string) => {
     setTask(text);
     setInputColor(text ? '#000' : '#C0C0C0'); 
   };
 
-  const handleEditTask = (id, newText) => {
+  const handleEditTask = (id: number, newText: string) => {
     let itemsCopy = [...taskItems];
     itemsCopy[id].text = newText;
     setTaskItems(itemsCopy);
